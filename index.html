@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>끝말잇기 게임</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+
+  .game-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  input {
+    font-size: 18px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #2980b9;
+  }
+</style>
+</head>
+<body>
+<div class="game-container">
+  <h1>끝말잇기 게임</h1>
+  <p id="word">첫 단어: 사과</p>
+  <input type="text" id="input-word" autofocus>
+  <button onclick="checkWord()">확인</button>
+</div>
+
+<script>
+  let currentWord = '사과'; // 첫 단어
+  let isFirstWord = true; // 첫 단어인지 여부
+
+  function checkWord() {
+    const userInput = document.getElementById('input-word').value.trim();
+    const lastChar = currentWord[currentWord.length - 1]; // 현재 단어의 마지막 글자
+
+    if (isFirstWord || userInput[0] === lastChar) {
+      currentWord = userInput;
+      document.getElementById('word').textContent = `다음 단어: ${currentWord}`;
+      document.getElementById('input-word').value = '';
+      document.getElementById('input-word').focus();
+      isFirstWord = false; // 첫 단어가 아니라고 표시
+    } else {
+      alert('틀렸습니다. 다시 시도하세요!');
+    }
+  }
+</script>
+
+</body>
+</html>
